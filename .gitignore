@@ -1,0 +1,15 @@
+# Maven
+target/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# Operativsystem
+.DS_Store
+Thumbs.db
+
+# Sparfiler från spelet (skapas när man spelar)
+*.save
+saves/
