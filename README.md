@@ -54,7 +54,7 @@ Vi följer GitHub flow:
 - `main` ska alltid gå att bygga och köra. Den är skyddad, och ändringar kommer bara in via pull requests.
 - Allt arbete görs i en feature branch från en uppdaterad `main`, med namn som `feature/<namn>-<vad>`.
 - Varje pull request granskas och godkänns av minst en annan gruppmedlem, och testerna ska vara gröna.
-- Vi mergar med en vanlig merge commit, så att varje branch syns i historiken.
+- Vi mergar med squash merge, så att varje pull request blir en commit på `main`.
 - Kontraktet i `fangdjupet.contract` ändras bara efter diskussion i gruppen.
 - Vi pushar inte till någon annans branch. Förslag på ändringar skrivs som kommentarer i granskningen.
 
