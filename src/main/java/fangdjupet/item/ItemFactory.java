@@ -17,7 +17,8 @@ public final class ItemFactory {
 
     private ItemFactory() {
     }
-
+    // level-värdet skickas in från createEnemies() i klassen AdventureSetup, där fiendernas nivåer bestäms
+    // av metoden createEnemies().
     public static Item create(ItemType type, int level) {
         Objects.requireNonNull(type, "type får inte vara null");
         return switch (type) {
