@@ -78,7 +78,7 @@ public abstract class BaseCharacter implements Combatant {
         if (amount < 0) {
             throw new IllegalArgumentException("amount får inte vara negativt");
         }
-        health = Math.min(maxHealth, health + amount);
+        health += Math.min(amount, maxHealth - health);
     }
 
     /** Anfaller målet med nuvarande strategi och returnerar skadan som gjordes. */
