@@ -2,8 +2,10 @@ package fangdjupet.game;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -35,7 +37,10 @@ public class Highscore {
         return entries;
     }
 
-    /** Lägger till ett resultat och sparar hela listan. */
+    /**
+     * Lägger till ett resultat och sparar hela listan. Listan skrivs först till en tillfällig fil,
+     * som sedan ersätter den gamla. Om skrivningen avbryts finns den gamla topplistan kvar.
+     */
     public void add(HighscoreEntry entry) throws IOException {
         Objects.requireNonNull(entry, "entry får inte vara null");
         List<HighscoreEntry> entries = new ArrayList<>(load());
@@ -44,7 +49,13 @@ public class Highscore {
         List<String> lines = entries.stream()
                 .map(e -> clean(e.heroName()) + SEPARATOR + e.enemiesDefeated())
                 .toList();
-        Files.write(file, lines, StandardCharsets.UTF_8);
+        Path temporaryFile = file.resolveSibling(file.getFileName() + ".tmp");
+        Files.write(temporaryFile, lines, StandardCharsets.UTF_8);
+        try {
+            Files.move(temporaryFile, file, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+        } catch (AtomicMoveNotSupportedException e) {
+            Files.move(temporaryFile, file, StandardCopyOption.REPLACE_EXISTING);
+        }
     }
 
     /** De bästa resultaten, flest besegrade fiender först. Vid lika står det äldsta resultatet först. */

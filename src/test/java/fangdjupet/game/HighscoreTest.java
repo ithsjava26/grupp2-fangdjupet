@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -45,6 +46,13 @@ class HighscoreTest {
         Highscore reopened = new Highscore(file);
 
         assertEquals(1, reopened.load().size());
+    }
+
+    @Test
+    void noTemporaryFileIsLeftAfterSaving() throws IOException {
+        highscore.add(new HighscoreEntry("Peter", 3));
+
+        assertFalse(Files.exists(tempDir.resolve("fangdjupet.highscore.tmp")));
     }
 
     @Test
