@@ -17,6 +17,7 @@ class  PotionTest{
     assertEquals(3, potion.getLevel());
     assertEquals(10, potion.getHealAmount());
 }
+
 @Test
     void ShouldThrowExceptionWhenHealAmountIsNegative(){
 
