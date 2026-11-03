@@ -13,3 +13,4 @@ Thumbs.db
 # Sparfiler från spelet (skapas när man spelar)
 *.save
 saves/
+*.highscore
