@@ -18,8 +18,13 @@ public class Battle {
     }
 
     public void fightRound(Combatant hero, Combatant enemy) {
+        if (!hero.isAlive() || !enemy.isAlive()) {
+            return;
+        }
         strike(hero, enemy);
         if (!enemy.isAlive()) {
+            events.onEvent(new GameEvent(GameEventType.ENEMY_DEFEATED,
+                    enemy.getName() + " har fallit i Fångdjupet."));
             return;
         }
         strike(enemy, hero);
