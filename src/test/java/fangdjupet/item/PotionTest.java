@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class  PotionTest{
+class PotionTest {
 
 @Test
 
@@ -19,7 +19,7 @@ class  PotionTest{
 }
 
 @Test
-    void ShouldThrowExceptionWhenHealAmountIsNegative(){
+    void shouldThrowExceptionWhenHealAmountIsNegative(){
 
     assertThrows(IllegalArgumentException.class, () ->
         new Potion("Mjölk", 5, -2)

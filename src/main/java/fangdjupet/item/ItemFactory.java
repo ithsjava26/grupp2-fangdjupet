@@ -29,6 +29,7 @@ public final class ItemFactory {
     }
 
     public static Weapon createWeapon(int level) {
+
         return new Weapon(nameForLevel(WEAPON_NAMES, level), level, 2 * level);
     }
 
