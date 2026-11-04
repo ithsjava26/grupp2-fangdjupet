@@ -37,15 +37,15 @@ Testerna körs också automatiskt med GitHub Actions vid varje pull request.
 ## Designmönster
 
 ### Strategy (combat)
-Jelena: AttackStrategy är implementerat med Strategy Pattern. Mönstret gör det möjligt att separera logiken
+AttackStrategy är implementerat med Strategy Pattern. Mönstret gör det möjligt att separera logiken
 för olika attacktaktiker från karaktärerna i spelet. På så sätt kan hjältar och fiender använda olika
-attackstrategier utan att deras egna klasser behöver ändras. Vi undviker också duplicerat kod.
+attackstrategier utan att deras egna klasser behöver ändras. Vi undviker också duplicerad kod.
 Interfacet AttackStrategy fungerar som ett kontrakt för alla attacktyper. Varje strategi måste 
 kunna ange sitt namn och beräkna skadan som attacken orsakar. I spelet finns tre attackstrategier:
 `MeleeAttack` (närstrid; skada beräknas som attack minus försvar), `RangedAttack` (avståndsanfall; 
 skada beräknas som attack minus halva försvaret) och `MagicAttack`(gör 75 % av attackvärdet i skada och
 ignorerar försvaret helt).
-Gemensamma regler för skadeberäkning har samlats i klassen DamageRules för att undvika duplicerat kod.
+Gemensamma regler för skadeberäkning har samlats i klassen DamageRules för att undvika duplicerad kod.
 Strategy Pattern passar bra här eftersom nya attacktyper kan läggas till utan att ändra befintliga
 karaktärsklasser. 
 
