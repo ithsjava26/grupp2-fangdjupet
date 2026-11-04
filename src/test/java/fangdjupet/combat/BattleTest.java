@@ -45,6 +45,7 @@ class BattleTest {
         assertEquals(0, rat.getHealth());
         assertEquals(30, hero.getHealth());
         assertEquals(2, events.size());
+        assertEquals(GameEventType.ENEMY_DEFEATED, events.get(events.size() - 1).type());
         assertTrue(events.get(events.size() - 1)
                 .message()
                 .startsWith("Råttan"));
