@@ -46,7 +46,8 @@ public final class ConsoleStyle {
 
     static ConsoleColor eventColor(GameEventType type) {
         return switch (type) {
-            case ENEMY_DEFEATED -> ConsoleColor.GREEN;
+            case ENEMY_DEFEATED, ITEM_USED -> ConsoleColor.GREEN;
+            case ITEM_FOUND -> ConsoleColor.YELLOW;
             case HERO_DEFEATED -> ConsoleColor.RED;
             case BATTLE_STARTED, ATTACK -> ConsoleColor.CYAN;
         };
