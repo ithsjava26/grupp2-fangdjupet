@@ -40,7 +40,12 @@ Testerna körs också automatiskt med GitHub Actions vid varje pull request.
 (Fylls i av Jalena: vilka strategier som finns och varför mönstret passar.)
 
 ### Factory (item och combat)
-(Fylls i av Stefan: vad fabrikerna skapar och vad anroparen slipper veta.)
+ItemFactory ansvarar för att skapa olika typer av föremål,
+exempelvis vapen, rustningar och drycker.
+
+EnemyFactory ansvarar för att skapa fiender av olika typer,
+exempelvis råttor, gobliner och troll, med egenskaper
+baserade på deras nivå.
 
 ### Observer (game)
 `Game` skickar händelser (`GameEvent`) till alla registrerade `GameEventListener`, till exempel `EventLog`
