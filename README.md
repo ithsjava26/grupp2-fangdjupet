@@ -50,7 +50,12 @@ Strategy Pattern passar bra här eftersom nya attacktyper kan läggas till utan 
 karaktärsklasser. 
 
 ### Factory (item och combat)
-(Fylls i av Stefan: vad fabrikerna skapar och vad anroparen slipper veta.)
+ItemFactory ansvarar för att skapa olika typer av föremål,
+exempelvis vapen, rustningar och drycker.
+
+EnemyFactory ansvarar för att skapa fiender av olika typer,
+exempelvis råttor, gobliner och troll, med egenskaper
+baserade på deras nivå.
 
 ### Observer (game)
 `Game` skickar händelser (`GameEvent`) till alla registrerade `GameEventListener`, till exempel `EventLog`
