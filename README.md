@@ -30,14 +30,24 @@ Testerna körs också automatiskt med GitHub Actions vid varje pull request.
 | Paket | Innehåll | Ansvarig |
 |---|---|---|
 | `fangdjupet.contract` | Gemensamma interfaces, records och enums som modulerna delar | Hela gruppen |
-| `fangdjupet.combat` | Hjälte, fiender, anfallsstrategier och turordning i strid | Jalena (A) |
+| `fangdjupet.combat` | Hjälte, fiender, anfallsstrategier och turordning i strid | Jelena (A) |
 | `fangdjupet.item` | Föremål, inventarium och föremålsfabrik | Stefan (B) |
 | `fangdjupet.game` | Meny, spelmotor, händelselogg och sparfunktion | Peter (C) |
 
 ## Designmönster
 
 ### Strategy (combat)
-(Fylls i av Jalena: vilka strategier som finns och varför mönstret passar.)
+AttackStrategy är implementerat med Strategy Pattern. Mönstret gör det möjligt att separera logiken
+för olika attacktaktiker från karaktärerna i spelet. På så sätt kan hjältar och fiender använda olika
+attackstrategier utan att deras egna klasser behöver ändras. Vi undviker också duplicerad kod.
+Interfacet AttackStrategy fungerar som ett kontrakt för alla attacktyper. Varje strategi måste 
+kunna ange sitt namn och beräkna skadan som attacken orsakar. I spelet finns tre attackstrategier:
+`MeleeAttack` (närstrid; skada beräknas som attack minus försvar), `RangedAttack` (avståndsanfall; 
+skada beräknas som attack minus halva försvaret) och `MagicAttack`(gör 75 % av attackvärdet i skada och
+ignorerar försvaret helt).
+Gemensamma regler för skadeberäkning har samlats i klassen DamageRules för att undvika duplicerad kod.
+Strategy Pattern passar bra här eftersom nya attacktyper kan läggas till utan att ändra befintliga
+karaktärsklasser. 
 
 ### Factory (item och combat)
 (Fylls i av Stefan: vad fabrikerna skapar och vad anroparen slipper veta.)
