@@ -187,24 +187,25 @@ public class Menu {
     }
 
     private void quit() {
-        if (game.hasActiveAdventure() && !game.isOver()) {
-            autoSave();
+        if (game.hasActiveAdventure() && !game.isOver() && autoSave()) {
             System.out.println("Ditt äventyr är sparat. Välj 2 nästa gång för att fortsätta.");
         }
         System.out.println("Tack för att du spelade Fångdjupet!");
         running = false;
     }
 
-    /** Sparar ett pågående äventyr, eller tar bort sparfilen om äventyret är slut. */
-    private void autoSave() {
+    /** Sparar ett pågående äventyr, eller tar bort sparfilen om äventyret är slut. Returnerar true om det lyckades. */
+    private boolean autoSave() {
         try {
             if (game.isOver()) {
                 saveManager.delete(saveFile);
             } else {
                 saveManager.save(game, saveFile);
             }
+            return true;
         } catch (SaveGameException e) {
             System.out.println("Varning: " + e.getMessage());
+            return false;
         }
     }
 
