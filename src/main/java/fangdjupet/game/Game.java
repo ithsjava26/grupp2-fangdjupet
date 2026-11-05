@@ -121,8 +121,6 @@ public class Game {
         Enemy enemy = enemies.peekFirst();
         if (enemy != null && !enemy.isAlive()) {
             enemies.removeFirst();
-            publish(new GameEvent(GameEventType.ENEMY_DEFEATED,
-                    hero.getName() + " besegrade " + enemy.getName()));
             handleLoot(createLoot(enemy.getLevel()));
         }
     }
