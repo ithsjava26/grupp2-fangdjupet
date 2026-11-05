@@ -84,6 +84,15 @@ public class Game {
         return List.copyOf(enemies);
     }
 
+    /** Fortsätter ett sparat äventyr. */
+    public void restore(SavedAdventure saved) {
+        Objects.requireNonNull(saved, "saved får inte vara null");
+        startNewAdventure(saved.hero(), saved.enemies());
+        saved.backpack().forEach(inventory::add);
+        publish(new GameEvent(GameEventType.GAME_LOADED,
+                hero.getName() + " fortsätter äventyret i Fångdjupet"));
+    }
+
     public Inventory<Item> getInventory() {
         return inventory;
     }

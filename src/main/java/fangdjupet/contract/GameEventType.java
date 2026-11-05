@@ -6,5 +6,6 @@ public enum GameEventType {
     ENEMY_DEFEATED,
     HERO_DEFEATED,
     ITEM_FOUND,
-    ITEM_USED
+    ITEM_USED,
+    GAME_LOADED
 }
