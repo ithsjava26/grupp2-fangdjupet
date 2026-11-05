@@ -49,7 +49,7 @@ public final class ConsoleStyle {
             case ENEMY_DEFEATED, ITEM_USED -> ConsoleColor.GREEN;
             case ITEM_FOUND -> ConsoleColor.YELLOW;
             case HERO_DEFEATED -> ConsoleColor.RED;
-            case BATTLE_STARTED, ATTACK -> ConsoleColor.CYAN;
+            case BATTLE_STARTED, ATTACK, GAME_LOADED -> ConsoleColor.CYAN;
         };
     }
 
