@@ -1,9 +1,10 @@
 package fangdjupet.item;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class WeaponTest {
+class WeaponTest {
     @Test
     void getLevelReturnsCorrectLevel() {
 
@@ -15,8 +16,7 @@ public class WeaponTest {
     }
 
     @Test
-
-    void getNameReturnsCorrectName(){
+    void getNameReturnsCorrectName() {
         Weapon weapon = new Weapon("Svärd", 3, 5);
 
         String name = weapon.getName();
