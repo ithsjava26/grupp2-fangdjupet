@@ -5,25 +5,24 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class  PotionTest{
+class PotionTest {
 
-@Test
+    @Test
+    void shouldReturnCorrectValues() {
 
-    void ShouldReturnCorrectValues(){
+        Potion potion = new Potion("Mjölk", 3, 10);
 
-    Potion potion = new Potion("Mjölk",3, 10);
+        assertEquals("Mjölk", potion.getName());
+        assertEquals(3, potion.getLevel());
+        assertEquals(10, potion.getHealAmount());
+    }
 
-    assertEquals("Mjölk", potion.getName());
-    assertEquals(3, potion.getLevel());
-    assertEquals(10, potion.getHealAmount());
-}
+    @Test
+    void shouldThrowExceptionWhenHealAmountIsNegative() {
 
-@Test
-    void ShouldThrowExceptionWhenHealAmountIsNegative(){
-
-    assertThrows(IllegalArgumentException.class, () ->
-        new Potion("Mjölk", 5, -2)
-    );
+        assertThrows(IllegalArgumentException.class, () ->
+                new Potion("Mjölk", 5, -2)
+        );
     }
 
 
