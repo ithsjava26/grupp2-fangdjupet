@@ -142,4 +142,39 @@ Vi följer GitHub flow:
 
 ## Gruppreflektion kring Git-samarbetet
 
-(Vad fungerade bra, vad var svårt, och hur löstes konflikter.)
+### Vad fungerade bra
+
+- **Kontraktet först.** De gemensamma interfacen i `fangdjupet.contract` mergades innan vi delade upp arbetet.
+  Därefter kunde vi bygga `combat`, `item` och `game` parallellt utan att vänta på varandra.
+- **Skyddad main.** Rulesetet krävde en pull request, ett godkännande och gröna tester. Ingen kod kom in
+  på `main` utan att någon annan hade tittat på den, och flera fel stoppades i tid.
+- **Små pull requests.** En pull request per funktion gjorde granskningen snabb, och historiken på `main`
+  blev lätt att följa med en rad per funktion tack vare squash merge.
+- **Granskning med lokal testkörning.** Den som granskade hämtade ofta branchen, körde testerna och
+  jämförde filerna innan godkännandet.
+- **CodeRabbit som komplement.** Den hittade verkliga fel, till exempel att `ENEMY_DEFEATED` skickades
+  två gånger och att ett test saknade `@Test`. Vi lärde oss att bedöma varje förslag: rätta det som kan
+  hända i spelet, och avböja med motivering det som inte kan det, som symboliska länkar.
+
+### Vad var svårt
+
+- **Squash merge och gamla brancher.** En branch som återanvändes efter en squash merge gav konflikter,
+  eftersom Git inte visste att dess commits redan fanns på `main` i form av en ny commit.
+- **Filer som följde med av misstag.** `mvnw.cmd`, en PDF och en tom bild kom med i pull requests.
+  Vi lärde oss att alltid köra `git status` innan `git add`.
+- **Stora och små bokstäver.** Tester i `src/Test` i stället för `src/test` fungerade på Windows men
+  kördes aldrig i GitHub Actions, som körs på Linux.
+- **Tester som berodde på andra moduler.** Ett test i sparfunktionen förväntade sig ett visst namn på
+  en dryck, och gick sönder när föremålen fick nya namn. Vi ändrade testet så att det frågar `ItemFactory`.
+- **Comment eller Approve.** En kommentar räknas inte som ett godkännande, vilket ibland gjorde att en
+  pull request stod och väntade.
+- **Gröna tester räcker inte.** Flera av felen ovan gick igenom alla tester. Därför behövs granskningen.
+
+### Hur vi löste konflikter
+
+En pull request med rättningar av testfilerna i `item` fick konflikter i fyra filer, eftersom den byggde
+på en gammal branch från före squash merge. Vi undersökte konflikten tillsammans med `git log` och
+`git diff` och såg att en sammanslagning dessutom skulle ge två testfiler med samma klass. I stället för
+att lösa konflikten i den gamla branchen stängdes pull requesten, och rättningarna gjordes om i en ny
+branch från `main`. Lärdomen blev en ny regel i vårt arbetssätt: skapa alltid en ny branch från `main`
+efter en squash merge.
