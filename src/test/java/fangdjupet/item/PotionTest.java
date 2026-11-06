@@ -18,7 +18,7 @@ class PotionTest {
     }
 
     @Test
-    void ShouldThrowExceptionWhenHealAmountIsNegative() {
+    void shouldThrowExceptionWhenHealAmountIsNegative() {
 
         assertThrows(IllegalArgumentException.class, () ->
                 new Potion("Mjölk", 5, -2)
